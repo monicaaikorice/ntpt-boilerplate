@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { Content } from '@prismicio/client';
-import { SliceComponentProps } from '@prismicio/react';
+import { FC } from 'react'
+import { Content } from '@prismicio/client'
+import { SliceComponentProps } from '@prismicio/react'
 
 /**
  * Props for `TextBlock`.
  */
-export type TextBlockProps = SliceComponentProps<Content.TextBlockSlice>;
+export type TextBlockProps = SliceComponentProps<Content.TextBlockSlice>
 
 /**
  * Component for "TextBlock" Slices.
@@ -47,7 +47,7 @@ const TextBlock: FC<TextBlockProps> = ({ slice }) => {
        * 📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
        */}
     </section>
-  );
-};
+  )
+}
 
-export default TextBlock;
+export default TextBlock

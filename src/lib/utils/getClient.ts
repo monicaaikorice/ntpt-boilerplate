@@ -13,4 +13,4 @@ export const getClient = () => {
   })
 
   return client
-};
+}

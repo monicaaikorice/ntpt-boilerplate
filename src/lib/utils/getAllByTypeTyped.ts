@@ -14,7 +14,7 @@ export async function getAllByTypeTyped<K extends keyof DocumentTypeMap>(
   const client: Client<AllDocumentTypes> = getClient()
 
   try {
-    return (await client.getAllByType(type, params)) as DocumentTypeMap[K][];
+    return (await client.getAllByType(type, params)) as DocumentTypeMap[K][]
   } catch (error) {
     throw new Error(
       `[getAllByTypeTyped] Error fetching type '${type}': ${(error as Error).message}`,

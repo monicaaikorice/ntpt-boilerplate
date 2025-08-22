@@ -25,7 +25,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* ACCESSIBILITY */
 
 /* Respect user motion/contrast by default */
@@ -34,4 +33,50 @@ body {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* === Focus-visible rings (global) === */
+
+/* Brand + offset colors (tweak to taste) */
+:root {
+  /* Tailwind v4 exposes --color-cyan-400; fallback ensures it still works */
+  --focus-ring: var(--color-cyan-400, #22d3ee);
+  /* Offset tries to match page background */
+  --focus-ring-offset: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --focus-ring-offset: #0b0b0b;
+  }
+}
+
+/* Apply to common interactive elements */
+:where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role='button'],
+    [tabindex]
+  ):where(:not([tabindex='-1'])):focus-visible {
+  outline: 2px solid transparent;
+  /* hide default outline */
+  outline-offset: 2px;
+  /* small gap if outline shows */
+  box-shadow:
+    0 0 0 3px var(--focus-ring-offset),
+    /* inner offset ring */ 0 0 0 6px var(--focus-ring);
+  /* outer brand ring */
+  border-radius: 0.5rem;
+  /* soften corners */
+  transition: box-shadow 100ms ease-out;
+}
+
+/* Optional: no ring on disabled controls */
+:where(button:disabled, [aria-disabled='true']):focus-visible {
+  outline: none;
+  box-shadow: none;
 }

@@ -19,7 +19,9 @@ export function deslugify(slug: string): string {
   return slug
     .split('-')
     .map((word) =>
-      word.length > 1 ? word.charAt(0).toUpperCase() + word.slice(1) : word.toUpperCase(),
+      word.length > 1
+        ? word.charAt(0).toUpperCase() + word.slice(1)
+        : word.toUpperCase(),
     )
     .join(' ')
 }

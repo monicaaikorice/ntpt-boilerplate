@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { Content } from '@prismicio/client';
-import { SliceComponentProps } from '@prismicio/react';
+import { FC } from 'react'
+import { Content } from '@prismicio/client'
+import { SliceComponentProps } from '@prismicio/react'
 
 /**
  * Props for `Image`.
  */
-export type ImageProps = SliceComponentProps<Content.ImageSlice>;
+export type ImageProps = SliceComponentProps<Content.ImageSlice>
 
 /**
  * Component for "Image" Slices.
@@ -46,7 +46,7 @@ const Image: FC<ImageProps> = ({ slice }) => {
        * 📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
        */}
     </section>
-  );
-};
+  )
+}
 
-export default Image;
+export default Image
