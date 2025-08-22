@@ -1,0 +1,46 @@
+{
+  "id": "image",
+  "type": "SharedSlice",
+  "name": "Image",
+  "description": "Image",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "post_image": {
+          "type": "Image",
+          "config": {
+            "label": "Post Image",
+            "constraint": {
+              "width": 1200,
+              "height": 800
+            },
+            "thumbnails": [
+              {
+                "name": "large",
+                "width": 900,
+                "height": 600
+              },
+              {
+                "name": "medium",
+                "width": 600,
+                "height": 400
+              },
+              {
+                "name": "small",
+                "width": 300,
+                "height": 200
+              }
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
