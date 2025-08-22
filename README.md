@@ -173,8 +173,7 @@ src/
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "check": "pnpm typecheck && pnpm lint && pnpm build",
-    "lint": "eslint",
-    "format": "prettier --write ."
+    "lint": "eslint"
   }
 }
 ```
