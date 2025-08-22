@@ -1,53 +1,20 @@
-import { FC } from 'react'
-import { Content } from '@prismicio/client'
-import { SliceComponentProps } from '@prismicio/react'
+// slices/TextBlock/index.tsx
+import { PrismicRichText, type SliceComponentProps, type JSXMapSerializer } from "@prismicio/react"
+import type { Slice, RichTextField } from "@prismicio/client"
 
-/**
- * Props for `TextBlock`.
- */
-export type TextBlockProps = SliceComponentProps<Content.TextBlockSlice>
+type TextBlockSlice = Slice<
+  "text_block",
+  { text_content: RichTextField }, // 👈 field name matches your model
+  never
+>
 
-/**
- * Component for "TextBlock" Slices.
- */
-const TextBlock: FC<TextBlockProps> = ({ slice }) => {
-  return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      Placeholder component for text_block (variation: {slice.variation})
-      slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use Prismic MCP with your code editor
-       *
-       * Get AI-powered help to build your slice components — based on your actual model.
-       *
-       * ▶️ Setup:
-       * 1. Add a new MCP Server in your code editor:
-       *
-       * {
-       *   "mcpServers": {
-       *     "Prismic MCP": {
-       *       "command": "npx",
-       *       "args": ["-y", "@prismicio/mcp-server@latest"]
-       *     }
-       *   }
-       * }
-       *
-       * 2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-       *
-       * ✅ Then open your slice file and ask your code editor:
-       *    "Code this slice"
-       *
-       * Your code editor reads your slice model and helps you code faster ⚡
-       * 🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-       * 📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
-       */}
-    </section>
-  )
+const rt: JSXMapSerializer = {
+  heading2: ({ children }) => <h2 className="mt-6 text-2xl font-semibold text-cyan-300">{children}</h2>,
+  heading3: ({ children }) => <h3 className="mt-6 text-xl font-semibold text-lime-300">{children}</h3>,
+  paragraph: ({ children }) => <p className="mt-4 leading-10 text-white text-[1.5rem]">{children}</p>,
+  // ...your other mappings
 }
 
-export default TextBlock
+export default function TextBlock({ slice }: SliceComponentProps<TextBlockSlice>) {
+  return <PrismicRichText field={slice.primary.text_content} components={rt} />
+}

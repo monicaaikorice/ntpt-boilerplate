@@ -30,15 +30,15 @@ export default async function HomePage() {
 
       <div className="flex flex-col lg:flex-row w-3/4 mx-auto mt-20">
         <div className="w-1/2 border border-gray-200 border-dotted mx-5 rounded-md p-6">
-          <h3>A11y-first</h3>
-          <p>Semantic HTML, focus styles, reduced motion.</p>
+          <h3 className="text-center text-2xl font-semibold text-lime-300">A11y-first</h3>
+          <p className="text-center">Semantic HTML, focus styles, reduced motion.</p>
         </div>
         <div className="w-1/2 border border-gray-200 border-dotted mx-5 rounded-md p-6">
-          <h3>DX</h3>
-          TypeScript, ESLint, Prettier, alias @/*.
+          <h3 className="text-center text-2xl font-semibold text-lime-300">DX</h3>
+           <p className="text-center">TypeScript, ESLint, Prettier, alias @/*.</p>
         </div>
       </div>
-      <article className="prose prose-invert max-w-none text-soft">
+      <article className="mx-auto mt-6 w-5/6 lg:mt-10 lg:w-3/5">
         <SliceZone slices={homepage.data.slices} components={components} />
       </article>
     </section>
