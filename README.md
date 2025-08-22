@@ -1,6 +1,6 @@
 # NTPT Boilerplate
 
-A minimal, a11y-first starter using **Next.js (App Router) + TypeScript + Tailwind CSS + Prismic**. Includes a blog, projects, categories, and a contact page, with solid SEO defaults and production-friendly structure.
+A minimal, a11y-first starter using **Next.js (App Router) + TypeScript + Prismic + Tailwind CSS**. Includes a blog, projects, categories, and a contact page, with solid SEO defaults and production-friendly structure.
 
 > Demo: https://ntptboilerplatedemo.netlify.app
 
