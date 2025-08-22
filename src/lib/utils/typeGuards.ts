@@ -1,7 +1,7 @@
 import type {
   ContentRelationshipField,
   FilledContentRelationshipField,
-} from '@prismicio/client'
+} from '@prismicio/client';
 
 /**
  * Type guard to check if a Prismic Content Relationship field has a UID.
@@ -17,7 +17,7 @@ export function hasUID<Type extends string>(
     typeof rel === 'object' &&
     'uid' in rel &&
     typeof rel.uid === 'string'
-  )
+  );
 }
 
 /**
@@ -28,5 +28,5 @@ export function hasUID<Type extends string>(
 export function hasDocUID<T extends { uid?: string }>(
   doc: T,
 ): doc is T & { uid: string } {
-  return typeof doc.uid === 'string'
+  return typeof doc.uid === 'string';
 }

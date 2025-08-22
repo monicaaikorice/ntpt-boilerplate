@@ -1,5 +1,5 @@
-import { getClient } from '../utils/getClient'
-import { Content } from '@prismicio/client'
+import { getClient } from '../utils/getClient';
+import { Content } from '@prismicio/client';
 
 /**
  *
@@ -7,7 +7,7 @@ import { Content } from '@prismicio/client'
  */
 export const getLatestPost =
   async (): Promise<Content.BlogPostDocument | null> => {
-    const client = getClient()
+    const client = getClient();
 
     return (
       (await client.getFirst<Content.BlogPostDocument>({
@@ -16,5 +16,5 @@ export const getLatestPost =
           direction: 'desc',
         },
       })) ?? null
-    )
-  }
+    );
+  };

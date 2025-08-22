@@ -1,5 +1,5 @@
-import * as prismic from '@prismicio/client'
-import { DocumentTypeMap } from '@/lib/utils/prismicTypeMap'
+import * as prismic from '@prismicio/client';
+import { DocumentTypeMap } from '@/lib/utils/prismicTypeMap';
 
 /**
  *
@@ -13,5 +13,5 @@ export async function getSingleTyped<K extends keyof DocumentTypeMap>(
   type: K,
   params?: prismic.BuildQueryURLArgs,
 ): Promise<DocumentTypeMap[K]> {
-  return client.getSingle(type, params) as Promise<DocumentTypeMap[K]>
+  return client.getSingle(type, params) as Promise<DocumentTypeMap[K]>;
 }

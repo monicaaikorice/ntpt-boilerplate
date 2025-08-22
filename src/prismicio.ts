@@ -3,13 +3,13 @@ import {
   createClient as baseCreateClient,
   type ClientConfig,
   type Route,
-} from '@prismicio/client'
-import { enableAutoPreviews } from '@prismicio/next'
-import sm from '../slicemachine.config.json'
+} from '@prismicio/client';
+import { enableAutoPreviews } from '@prismicio/next';
+import sm from '../slicemachine.config.json';
 
 /** Your repository name (NEXT_PUBLIC_PRISMIC_ENVIRONMENT can override if you use environments) */
 export const repositoryName =
-  process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName
+  process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName;
 
 /** Define where each Prismic type should resolve (used for previews + doc.url) */
 const routes: Route[] = [
@@ -17,7 +17,7 @@ const routes: Route[] = [
   // { type: "home", path: "/" },
   { type: 'home', path: '/' },
   { type: 'post', path: '/blog/:uid' },
-]
+];
 
 /** Create the Prismic client with sensible Next.js caching + previews */
 export const createClient = (config: ClientConfig = {}) => {
@@ -30,10 +30,10 @@ export const createClient = (config: ClientConfig = {}) => {
         ? { next: { tags: ['prismic'] }, cache: 'force-cache' }
         : { next: { revalidate: 5 } },
     ...config,
-  })
+  });
 
   // Enables Prismic Preview with Next.js Draft Mode
-  enableAutoPreviews({ client })
+  enableAutoPreviews({ client });
 
-  return client
-}
+  return client;
+};

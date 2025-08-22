@@ -1,5 +1,5 @@
-import { Content, filter } from '@prismicio/client'
-import { getAllByTypeTyped } from '../utils/getAllByTypeTyped'
+import { Content, filter } from '@prismicio/client';
+import { getAllByTypeTyped } from '../utils/getAllByTypeTyped';
 
 /**
  *
@@ -16,8 +16,8 @@ export const getAllPosts = async (): Promise<
       },
       fetchLinks: ['category.uid'],
     })) ?? []
-  )
-}
+  );
+};
 
 /**
  *
@@ -31,5 +31,5 @@ export const getAllPostsByCategory = async (
     getAllByTypeTyped('blog_post', {
       filters: [filter.at('my.blog_post.category', category.id)],
     }) ?? []
-  )
-}
+  );
+};

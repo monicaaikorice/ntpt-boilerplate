@@ -1,15 +1,14 @@
-import React from 'react'
-import Link from 'next/link'
-import { deslugify, sluggify } from '@/lib/utils/prismicHelpers'
+import * as React from 'react';
+import Link from 'next/link';
 
-interface CardProps {
-  title: string
-  summary: string
-  href: string
-  date?: string
-  category?: string
-  onCategoryPage?: boolean
-}
+type CardProps = {
+  title: string;
+  summary: string;
+  href: string;
+  date?: string;
+  category?: string; // plain string from Prismic custom type
+  onCategoryPage?: boolean; // true when you're already on that category's page
+};
 
 export default function Card({
   title,
@@ -19,73 +18,56 @@ export default function Card({
   category,
   onCategoryPage = false,
 }: CardProps) {
-  const categoryName = category ? deslugify(category) : ''
+  const uid = React.useId();
 
-  // Decide whether to show the tape label at all (avoid redundant links for WCAG)
-  const showTapeLabel = !onCategoryPage && !!categoryName
+  // Only show category if we're NOT on its page
+  const showCategory = !!category && !onCategoryPage;
 
-  const slugBase = sluggify(title)
-  const refId = `${slugBase}`
+  const parsedDate = date ? new Date(date) : null;
+  const prettyDate =
+    parsedDate && !isNaN(parsedDate.getTime())
+      ? parsedDate.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })
+      : date;
 
   return (
     <article
-      role="article"
-      aria-labelledby={`${refId}-title`}
-      aria-describedby={`${refId}-summary`}
-      className="z-10 mx-auto w-full max-w-xl rounded-sm overflow-hidden shadow-md shadow-white/50 h-[28rem]"
+      aria-labelledby={`${uid}-title`}
+      aria-describedby={`${uid}-summary`}
+      className="border border-gray-200 border-dotted rounded-md p-6"
     >
-      {/* TAPE BAR */}
-      <div
-        className="relative w-full h-[4rem] bg-purple-950"
-      >
-        {(date || (showTapeLabel && categoryName)) && (
-          <div
-            className="absolute top-2 left-2 text-lg px-2 py-1 rounded-sm"
-          >
-            {date && <time className="text-white" dateTime={date}>{date}</time>}
-            {showTapeLabel && categoryName && (
-              <>
-                <span aria-hidden="true"> • </span>
-                {href ? (
-                  <Link
-                    href={href}
-                    className="hover:underline"
-                    aria-label={`View more posts in ${categoryName}`}
-                  >
-                    {categoryName}
-                  </Link>
-                ) : (
-                  <span>{categoryName}</span>
-                )}
-              </>
-            )}
-          </div>
-        )}
+      <h2 id={`${uid}-title`} className="text-lg font-semibold text-sky-300">
+        <Link href={href} className="hover:underline">
+          {title}
+        </Link>
+      </h2>
 
-        <h2
-          id={`${refId}-title`}
-          className="absolute bottom-2 left-2 right-2 font-mono text-xl font-semibold text-white px-3 py-1 rounded-sm"
-        >
-          <Link
-            href={href}
-            className="`font-medium text-[clamp(1.25rem,2vw,1.5rem)] hover:underline"
-            aria-label={`Read more: ${title}`}
-            aria-describedby={`${refId}-summary`}
-          >
-            {title}
-          </Link>
-        </h2>
-      </div>
+      {(prettyDate || showCategory) && (
+        <div className="mt-1 text-sm text-gray-50">
+          {prettyDate && (
+            <time dateTime={parsedDate ? parsedDate.toISOString() : date}>
+              {prettyDate}
+            </time>
+          )}
+          {prettyDate && showCategory && <span aria-hidden="true"> • </span>}
+          {showCategory && (
+            <Link
+              href={`/blog/${category}`}
+              className="hover:underline capitalize"
+              aria-label={`View more posts in ${category}`}
+            >
+              {category}
+            </Link>
+          )}
+        </div>
+      )}
 
-      {/* BOTTOM SECTION */}
-      <div className="flex flex-1 flex-col justify-between p-6 bg-gray-900">
-        <p
-          id={`${refId}-summary`}
-          className="text-[1.25rem] font-primary line-clamp-4"
-        >
-          {summary}
-        </p>
-      </div>
+      <p id={`${uid}-summary`} className="mt-2 text-sm text-lime-300">
+        {summary}
+      </p>
     </article>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import { getClient } from '@/lib/utils/getClient'
-import { isFilled, FilledContentRelationshipField } from '@prismicio/client'
-import { Content } from '@prismicio/client'
-import { hasDocUID } from '@/lib/utils/typeGuards'
+import { getClient } from '@/lib/utils/getClient';
+import { isFilled, FilledContentRelationshipField } from '@prismicio/client';
+import { Content } from '@prismicio/client';
+import { hasDocUID } from '@/lib/utils/typeGuards';
 
 /**
  *
@@ -9,13 +9,13 @@ import { hasDocUID } from '@/lib/utils/typeGuards'
  */
 export const getAllCategoryUIDPairs = async (): Promise<
   {
-    category: string
-    post: string
+    category: string;
+    post: string;
   }[]
 > => {
-  const client = getClient()
+  const client = getClient();
   const posts =
-    await client.getAllByType<Content.BlogPostDocument>('blog_post')
+    await client.getAllByType<Content.BlogPostDocument>('blog_post');
 
   return (
     posts
@@ -26,13 +26,13 @@ export const getAllCategoryUIDPairs = async (): Promise<
       .map((post) => {
         const cat = post.data
           .category as FilledContentRelationshipField<'category'> & {
-          uid: string
-        }
+          uid: string;
+        };
 
         return {
           category: cat.uid,
           post: post.uid,
-        }
+        };
       }) ?? null
-  )
-}
+  );
+};
