@@ -36,6 +36,16 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
     notFound()
   }
 
+  const parsedDate = shownPost.data.date ? new Date(shownPost.data.date) : null;
+  const prettyDate =
+    parsedDate && !isNaN(parsedDate.getTime())
+      ? parsedDate.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })
+      : shownPost.data.date;
+
   const allPosts = await getAllPosts()
   const currentIndex =
     allPosts && allPosts.length > 0
@@ -67,7 +77,11 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
       <h2
         className="text-fuchsia-200 text-xl lg:text-2xl text-center mt-10"
       >
-        {shownPost.data.date} in <span className="text-sky-300">{categoryName}</span>
+        {prettyDate && (
+            <time dateTime={parsedDate ? parsedDate.toISOString() : shownPost.data.date as string}>
+              {prettyDate}
+            </time>
+          )} in <span className="text-sky-300">{categoryName}</span>
       </h2>
 
       <div className="w-full mx-auto mt-12 md:w-5/6 p-8 xl:w-2/3 border border-gray-200 border-dotted rounded-md">
@@ -75,7 +89,7 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
           <SliceZone slices={shownPost.data.slices} components={components} />
         </article>
       </div>
-      <div className="flex flex-row justify-between mt-10">
+      <div className="flex flex-row justify-between mt-10 xl:w-3/5 mx-auto">
         <div className="md:w-1/4 lg:w-1/5 xl:w-1/3">
           {prevPost ? (
             <Link
@@ -86,10 +100,10 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
               ← <span>Previous</span>
             </Link>
           ) : (
-            <span className="sr-only ">No previous posts</span>
+            <span aria-disabled="true" className="opacity-40 select-none">← Previous</span>
           )}
         </div>
-        <div className="hidden lg:block md:w-1/2 mx-auto text-center">
+        <div className="md:w-1/2 mx-auto text-center">
           <Link
             href={`/blog/${category}`}
             aria-label={`back to all posts in ${categoryName}`}
@@ -108,19 +122,9 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
               <span>Next</span> →
             </Link>
           ) : (
-            <span className="sr-only">No more posts</span>
+            <span aria-disabled="true" className="opacity-40 select-none">Next →</span>
           )}
         </div>
-      </div>
-      <div className="mt-4 md:-mt-7 text-center lg:hidden">
-        <Link
-          href={`/blog/${category}`}
-          aria-hidden="true"
-          tabIndex={-1}
-          className="hover:underline text-lime-300"
-        >
-          Back to {categoryName}
-        </Link>
       </div>
     </section>
   )
