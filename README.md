@@ -10,7 +10,7 @@ A minimal, a11y-first starter using **Next.js (App Router) + TypeScript + Prismi
 
 - **App Router** with SSR/SSG and file-based routing
 - **Prismic** integration with SliceZone-ready pages
-- **Content types** wired up: `blog_post`, `project`, `category`, `contact`
+- **Content types** wired up: `blog_post`, `category`
 - **Pages included**
   - `/blog` (index with pagination)
   - `/blog/[uid]` (post detail)
