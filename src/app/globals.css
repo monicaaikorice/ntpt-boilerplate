@@ -1,36 +1,39 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Base design tokens via CSS vars */
 :root {
   --background: #ffffff;
   --foreground: #000000;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* focus ring colors (fallbacks included) */
+  --focus-ring: #22d3ee;
+  /* cyan-400 fallback */
+  --focus-ring-offset: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000000;
     --foreground: #ededed;
+    --focus-ring-offset: #0b0b0b;
   }
 }
 
+/* Body styles (Next.js tip: use /assets/... not ../public/...) */
 body {
-  background: var(--background);
-  background-image: url(../../public/assets/images/pagebg.png);
+  background: #000000;
+  background-image: url("/assets/images/pagebg.png");
   background-position: top center;
   background-repeat: no-repeat;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans, Arial), Helvetica, sans-serif;
 }
 
 /* ACCESSIBILITY */
 
-/* Respect user motion/contrast by default */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -38,48 +41,30 @@ body {
   }
 }
 
-/* === Focus-visible rings (global) === */
-
-/* Brand + offset colors (tweak to taste) */
-:root {
-  /* Tailwind v4 exposes --color-cyan-400; fallback ensures it still works */
-  --focus-ring: var(--color-cyan-400, #22d3ee);
-  /* Offset tries to match page background */
-  --focus-ring-offset: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --focus-ring-offset: #0b0b0b;
-  }
-}
-
-/* Apply to common interactive elements */
-:where(
-    a,
-    button,
-    input,
-    select,
-    textarea,
-    summary,
-    [role='button'],
-    [tabindex]
-  ):where(:not([tabindex='-1'])):focus-visible {
+/* Focus-visible rings (global) */
+:where(a, button, input, select, textarea, summary,
+  [role='button'], [tabindex]):where(:not([tabindex='-1'])):focus-visible {
   outline: 2px solid transparent;
-  /* hide default outline */
   outline-offset: 2px;
-  /* small gap if outline shows */
   box-shadow:
     0 0 0 3px var(--focus-ring-offset),
-    /* inner offset ring */ 0 0 0 6px var(--focus-ring);
-  /* outer brand ring */
+    0 0 0 6px var(--focus-ring);
   border-radius: 0.5rem;
-  /* soften corners */
   transition: box-shadow 100ms ease-out;
 }
 
-/* Optional: no ring on disabled controls */
 :where(button:disabled, [aria-disabled='true']):focus-visible {
   outline: none;
   box-shadow: none;
+}
+
+/* Example component classes using @apply */
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-600 text-white font-medium shadow hover:bg-pink-500 active:bg-pink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-300;
+  }
+
+  .card {
+    @apply rounded-2xl p-6 shadow-lg bg-zinc-900/60 border border-white/10;
+  }
 }
