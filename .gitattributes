@@ -1,0 +1,11 @@
+# Keep these files as they are in the current branch (tw-classic) during merges
+tailwind.config.* merge=ours
+postcss.config.* merge=ours
+src/styles/tailwind.css merge=ours
+src/app/globals.css merge=ours
+# If your Tailwind v3 vs v4 differs here:
+src/**/*.module.css merge=ours
+# If package.json differs a lot, prefer tw-classic’s copy:
+package.json merge=ours
+package-lock.json merge=ours
+pnpm-lock.yaml merge=ours
