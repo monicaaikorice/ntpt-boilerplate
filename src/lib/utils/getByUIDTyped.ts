@@ -1,8 +1,10 @@
-import * as prismic from '@prismicio/client';
-import { DocumentTypeMap } from './prismicTypeMap';
+// lib/utils/getByUIDTyped.ts
+// Get a document by its UID
+
+import * as prismic from '@prismicio/client'
+import { DocumentTypeMap } from './prismicTypeMap'
 
 /**
- *
  * @param client = Prismic client
  * @param type = Document type
  * @param uid = Document UID
@@ -15,5 +17,5 @@ export async function getByUIDTyped<K extends keyof DocumentTypeMap>(
   uid: string,
   params?: prismic.BuildQueryURLArgs,
 ): Promise<DocumentTypeMap[K]> {
-  return client.getByUID(type, uid, params) as Promise<DocumentTypeMap[K]>;
+  return client.getByUID(type, uid, params) as Promise<DocumentTypeMap[K]>
 }

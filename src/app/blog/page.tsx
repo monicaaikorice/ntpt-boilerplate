@@ -1,10 +1,10 @@
-import { getSummary } from '@/lib/utils/getSummary';
-import { isFilled } from '@prismicio/client';
-import Card from '@/components/Card';
-import { JSX } from 'react';
-import { getAllPosts } from '@/lib/blog/getAllPosts';
+import { getSummary } from '@/lib/utils/getSummary'
+import { isFilled } from '@prismicio/client'
+import Card from '@/components/Card'
+import { JSX } from 'react'
+import { getAllPosts } from '@/lib/blog/getAllPosts'
 
-export const revalidate = 60;
+export const revalidate = 60
 
 /**
  * renders all blog posts
@@ -12,7 +12,7 @@ export const revalidate = 60;
  */
 
 export default async function BlogIndexPage(): Promise<JSX.Element> {
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllPosts()
 
   return (
     <section className="prose prose-lg w-5/6 lg:w-3/4 mx-auto my-24">
@@ -40,7 +40,7 @@ export default async function BlogIndexPage(): Promise<JSX.Element> {
           {allPosts.map((post) => {
             const categoryUID = isFilled.contentRelationship(post.data.category)
               ? post.data.category.uid
-              : 'uncategorized';
+              : 'uncategorized'
 
             return (
               <Card
@@ -51,12 +51,12 @@ export default async function BlogIndexPage(): Promise<JSX.Element> {
                 date={post.first_publication_date?.slice(0, 10)}
                 category={categoryUID}
               />
-            );
+            )
           })}
         </div>
       ) : (
         <h2 className="text-2xl text-white">No posts to show.</h2>
       )}
     </section>
-  );
+  )
 }

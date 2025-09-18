@@ -1,3 +1,6 @@
+// lib/utils/typeGuards.ts
+// sanity checkers
+
 import type {
   ContentRelationshipField,
   FilledContentRelationshipField,
@@ -21,7 +24,8 @@ export function hasUID<Type extends string>(
 }
 
 /**
- *
+ * Type guard to check if a Prismic document has a document UID.
+ * 
  * @param doc = a document
  * @returns true if the constant has a document UID
  */
