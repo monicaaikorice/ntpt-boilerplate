@@ -1,5 +1,5 @@
 import { getClient } from '@/lib/utils/getClient';
-import { getSingleTyped } from '../utils/prismicTyped';
+import { getSingleTyped } from '../utils/getSingleTyped';
 
 /**
  *

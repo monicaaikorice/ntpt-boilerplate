@@ -1,5 +1,5 @@
 // lib/utils/prismicHelpers.ts
-// De-slug + slug helpers
+// Helpers for things like formatting
 
 /**
  * De-slugify strings for UI (breadcrumbs, labels, etc.)
@@ -8,12 +8,12 @@
 export function deslugify(slug: string): string {
   if (!slug) return '';
 
-  // Explicit exceptions (add more as needed)
+  /* Explicit exceptions (add more as needed)
   const EXCEPTIONS: Record<string, string> = {
     'ai-and-llm': 'AI and LLM',
   };
   const hit = EXCEPTIONS[slug];
-  if (hit) return hit;
+  if (hit) return hit; */
 
   // Default: split on dashes, capitalize first letter of each word
   return slug

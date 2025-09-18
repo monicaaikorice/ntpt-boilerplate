@@ -1,8 +1,10 @@
-import * as prismic from '@prismicio/client';
-import { DocumentTypeMap } from '@/lib/utils/prismicTypeMap';
+// lib/utils/prismicTyped.ts
+// Strongly typed Prismic document fetchers
+
+import * as prismic from '@prismicio/client'
+import { DocumentTypeMap } from '@/lib/utils/prismicTypeMap'
 
 /**
- *
  * @param client = Prismic client
  * @param type = document type
  * @param params = any filters or orderings
@@ -13,5 +15,5 @@ export async function getSingleTyped<K extends keyof DocumentTypeMap>(
   type: K,
   params?: prismic.BuildQueryURLArgs,
 ): Promise<DocumentTypeMap[K]> {
-  return client.getSingle(type, params) as Promise<DocumentTypeMap[K]>;
+  return client.getSingle(type, params) as Promise<DocumentTypeMap[K]>
 }

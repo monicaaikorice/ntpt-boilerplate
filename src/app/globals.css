@@ -26,7 +26,7 @@ body {
 
 body {
   background: var(--background);
-  background-image: url(../../public/assets/images/pagebg.png);
+  background-image: url(/assets/images/pagebg.png);
   background-position: top center;
   background-repeat: no-repeat;
   color: var(--foreground);
