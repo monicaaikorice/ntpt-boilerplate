@@ -22,6 +22,11 @@
 }
 
 /* Body styles (Next.js tip: use /assets/... not ../public/...) */
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: #000000;
   background-image: url("/assets/images/pagebg.png");
