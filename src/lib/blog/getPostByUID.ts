@@ -1,5 +1,5 @@
-import { getClient } from '@/lib/utils/getClient';
-import { Content } from '@prismicio/client';
+import { getClient } from '@/lib/utils/getClient'
+import { Content } from '@prismicio/client'
 
 /**
  *
@@ -9,13 +9,13 @@ import { Content } from '@prismicio/client';
 export const getPostByUID = async (
   uid: string,
 ): Promise<Content.BlogPostDocument | null> => {
-  const client = getClient();
+  const client = getClient()
   const post = await client.getByUID<Content.BlogPostDocument>(
     'blog_post',
     uid,
     {
       fetchLinks: ['category.uid'],
     },
-  );
-  return post ?? null;
-};
+  )
+  return post ?? null
+}

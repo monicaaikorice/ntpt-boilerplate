@@ -3,14 +3,14 @@ import {
   PrismicRichText,
   type SliceComponentProps,
   type JSXMapSerializer,
-} from '@prismicio/react';
-import type { Slice, RichTextField } from '@prismicio/client';
+} from '@prismicio/react'
+import type { Slice, RichTextField } from '@prismicio/client'
 
 type TextBlockSlice = Slice<
   'text_block',
   { text_content: RichTextField }, // 👈 field name matches your model
   never
->;
+>
 
 const rt: JSXMapSerializer = {
   heading2: ({ children }) => (
@@ -23,10 +23,10 @@ const rt: JSXMapSerializer = {
     <p className="mt-4 leading-10 text-white text-[1.5rem]">{children}</p>
   ),
   // ...your other mappings
-};
+}
 
 export default function TextBlock({
   slice,
 }: SliceComponentProps<TextBlockSlice>) {
-  return <PrismicRichText field={slice.primary.text_content} components={rt} />;
+  return <PrismicRichText field={slice.primary.text_content} components={rt} />
 }

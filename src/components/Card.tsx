@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Link from 'next/link';
+import * as React from 'react'
+import Link from 'next/link'
 
 type CardProps = {
-  title: string;
-  summary: string;
-  href: string;
-  date?: string;
-  category?: string; // plain string from Prismic custom type
-  onCategoryPage?: boolean; // true when you're already on that category's page
-};
+  title: string
+  summary: string
+  href: string
+  date?: string
+  category?: string // plain string from Prismic custom type
+  onCategoryPage?: boolean // true when you're already on that category's page
+}
 
 export default function Card({
   title,
@@ -18,12 +18,12 @@ export default function Card({
   category,
   onCategoryPage = false,
 }: CardProps) {
-  const uid = React.useId();
+  const uid = React.useId()
 
   // Only show category if we're NOT on its page
-  const showCategory = !!category && !onCategoryPage;
+  const showCategory = !!category && !onCategoryPage
 
-  const parsedDate = date ? new Date(date) : null;
+  const parsedDate = date ? new Date(date) : null
   const prettyDate =
     parsedDate && !isNaN(parsedDate.getTime())
       ? parsedDate.toLocaleDateString(undefined, {
@@ -31,7 +31,7 @@ export default function Card({
           month: 'short',
           day: 'numeric',
         })
-      : date;
+      : date
 
   return (
     <article
@@ -69,5 +69,5 @@ export default function Card({
         {summary}
       </p>
     </article>
-  );
+  )
 }

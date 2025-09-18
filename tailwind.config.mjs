@@ -1,5 +1,5 @@
 // tailwind.config.mjs
-import defaultTheme from "tailwindcss/defaultTheme";
+import defaultTheme from "tailwindcss/defaultTheme"
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -27,6 +27,6 @@ const config = {
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config

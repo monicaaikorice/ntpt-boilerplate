@@ -36,7 +36,7 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
     notFound()
   }
 
-  const parsedDate = shownPost.data.date ? new Date(shownPost.data.date) : null;
+  const parsedDate = shownPost.data.date ? new Date(shownPost.data.date) : null
   const prettyDate =
     parsedDate && !isNaN(parsedDate.getTime())
       ? parsedDate.toLocaleDateString(undefined, {
@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: Promise<PagePar
           month: 'short',
           day: 'numeric',
         })
-      : shownPost.data.date;
+      : shownPost.data.date
 
   const allPosts = await getAllPosts()
   const currentIndex =

@@ -1,5 +1,5 @@
-import { Content } from '@prismicio/client';
-import { getAllByTypeTyped } from '../utils/getAllByTypeTyped';
+import { Content } from '@prismicio/client'
+import { getAllByTypeTyped } from '../utils/getAllByTypeTyped'
 
 /**
  *
@@ -8,5 +8,5 @@ import { getAllByTypeTyped } from '../utils/getAllByTypeTyped';
 export const getAllCategories = async (): Promise<
   Content.CategoryDocument[] | null
 > => {
-  return (await getAllByTypeTyped('category')) ?? [];
-};
+  return (await getAllByTypeTyped('category')) ?? []
+}
